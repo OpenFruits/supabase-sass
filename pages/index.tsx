@@ -1,9 +1,28 @@
-import type { CustomNextPage } from "next";
+import type { CustomNextPage, GetStaticProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { Button } from "src/component/Button";
 import { FluidLayout } from "src/layout/FluidLayout";
+import { supabase } from "src/utils/supabase";
 
-const Home: CustomNextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const { data: lessons } = await supabase.from("lesson").select("*");
+
+  return {
+    props: { lessons },
+  };
+};
+
+type Lesson = {
+  id: number;
+  title: string;
+  description: string;
+  created_at: any;
+};
+
+type Props = { lessons: Lesson[] };
+
+const Home: CustomNextPage<Props> = (props) => {
   const handleClick = () => {
     alert("Hello World!");
   };
@@ -19,6 +38,17 @@ const Home: CustomNextPage = () => {
         <Button variant="solid-blue" className="p-2 rounded" onClick={handleClick}>
           show alert!
         </Button>
+      </div>
+      <div>
+        {props.lessons.map((lesson) => {
+          return (
+            <div key={lesson.id}>
+              <Link href={`/${lesson.id}`}>
+                <a>{lesson.title}</a>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </>
   );
