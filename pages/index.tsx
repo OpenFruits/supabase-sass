@@ -40,15 +40,13 @@ const Home: CustomNextPage<Props> = (props) => {
         </Button>
       </div>
       <div>
-        {props.lessons.map((lesson) => {
-          return (
-            <div key={lesson.id}>
-              <Link href={`/${lesson.id}`}>
-                <a>{lesson.title}</a>
-              </Link>
-            </div>
-          );
-        })}
+        {props.lessons.map((lesson) => (
+          <div key={lesson.id}>
+            <Link href={`/${lesson.id}`}>
+              <a>{lesson.title}</a>
+            </Link>
+          </div>
+        ))}
       </div>
     </>
   );
