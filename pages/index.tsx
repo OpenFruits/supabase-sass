@@ -1,14 +1,8 @@
 import type { CustomNextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import type { Lesson } from "src/type/lesson";
 import { supabase } from "src/utils/supabase";
-
-type Lesson = {
-  id: number;
-  title: string;
-  description: string;
-  created_at: any;
-};
 
 const Home: CustomNextPage<{ lessons: Lesson[] }> = (props) => {
   return (
