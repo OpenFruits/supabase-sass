@@ -3,14 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { supabase } from "src/utils/supabase";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { data: lessons } = await supabase.from("lesson").select("*");
-
-  return {
-    props: { lessons },
-  };
-};
-
 type Lesson = {
   id: number;
   title: string;
@@ -18,9 +10,7 @@ type Lesson = {
   created_at: any;
 };
 
-type Props = { lessons: Lesson[] };
-
-const Home: CustomNextPage<Props> = (props) => {
+const Home: CustomNextPage<{ lessons: Lesson[] }> = (props) => {
   return (
     <>
       <Head>
@@ -36,6 +26,14 @@ const Home: CustomNextPage<Props> = (props) => {
       </div>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data: lessons } = await supabase.from<Lesson>("lesson").select("*");
+
+  return {
+    props: { lessons },
+  };
 };
 
 export default Home;
