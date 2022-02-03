@@ -27,13 +27,11 @@ const Home: CustomNextPage<Props> = (props) => {
         <title>Index Page</title>
       </Head>
 
-      <div>
+      <div className="px-2 my-16 mx-auto w-full max-w-3xl">
         {props.lessons.map((lesson) => (
-          <div key={lesson.id}>
-            <Link href={`/${lesson.id}`}>
-              <a>{lesson.title}</a>
-            </Link>
-          </div>
+          <Link key={lesson.id} href={`/${lesson.id}`}>
+            <a className="flex p-8 mb-4 h-40 text-xl rounded shadow">{lesson.title}</a>
+          </Link>
         ))}
       </div>
     </>
