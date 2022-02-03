@@ -1,5 +1,4 @@
 import type { CustomNextPage, GetStaticPaths, GetStaticProps } from "next";
-import { FluidLayout } from "src/layout/FluidLayout";
 import { supabase } from "src/utils/supabase";
 
 type Lesson = {
@@ -45,7 +44,5 @@ const LessonDetails: CustomNextPage<Props> = (props) => {
     </div>
   );
 };
-
-LessonDetails.getLayout = FluidLayout;
 
 export default LessonDetails;
