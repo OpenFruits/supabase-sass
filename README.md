@@ -1,9 +1,7 @@
-# Next.js starter template
+# Supabase SaaS
 
+- Supabase
+- Stripe
 - Next.js
 - TypeScript
 - Tailwind CSS
-- ESLint
-- Prettier
-- Jest
-- Playwright
